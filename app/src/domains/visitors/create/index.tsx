@@ -4,7 +4,7 @@ import { CreateVisitorForm } from "./form";
 
 export function CreateVisitorPage() {
   return (
-    <Tabs defaultValue="account" className="w-[400px]">
+    <Tabs defaultValue="account" className="max-w-4xl w-full">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="account">something</TabsTrigger>
         <TabsTrigger value="password">Something else here</TabsTrigger>

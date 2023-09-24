@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { registerVisitorRoutes } from "./visitors";
+import { registerProfileRoutes } from "./profiles";
 
 const app = express();
 const port = 4000;
@@ -13,6 +14,7 @@ app.use((req, res, next) => {
 });
 
 registerVisitorRoutes(app);
+registerProfileRoutes(app);
 
 app.get("/", (_, res) => {
   res.send("Hello World!!!!");

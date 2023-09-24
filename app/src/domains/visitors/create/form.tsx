@@ -7,11 +7,11 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { ProfilePicker } from "@/domains/profiles/components/ProfilePicker";
 
 const FormSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+  profileId: z.number(),
+  username: z.string().min(3),
 });
 
 export function CreateVisitorForm() {
@@ -36,9 +36,22 @@ export function CreateVisitorForm() {
         <CardTitle>Create Visitor</CardTitle>
         <CardDescription>Create a new visitor by selecting a profile and filling in the fields.</CardDescription>
       </CardHeader>
-      <CardContent className="space-y-2">
+      <CardContent className="space-y-2 overflow-auto">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="profileId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Profile</FormLabel>
+                  <FormControl>
+                    <ProfilePicker {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="username"
