@@ -5,9 +5,9 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { ProfilePicker } from "@/domains/profiles/components/ProfilePicker";
+import { useToast } from "@/components/ui/use-toast";
 
 const FormSchema = z.object({
   profileId: z.number(),
@@ -15,11 +15,14 @@ const FormSchema = z.object({
 });
 
 export function CreateVisitorForm() {
+  const { toast } = useToast();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log("toasting", data);
     toast({
       title: "You submitted the following values:",
       description: (
@@ -31,14 +34,14 @@ export function CreateVisitorForm() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Create Visitor</CardTitle>
-        <CardDescription>Create a new visitor by selecting a profile and filling in the fields.</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-2 overflow-auto">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Create Visitor</CardTitle>
+            <CardDescription>Create a new visitor by selecting a profile and filling in the fields.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2 overflow-auto">
             <FormField
               control={form.control}
               name="profileId"
@@ -46,7 +49,7 @@ export function CreateVisitorForm() {
                 <FormItem>
                   <FormLabel>Profile</FormLabel>
                   <FormControl>
-                    <ProfilePicker {...field} />
+                    <ProfilePicker profileId={field.value} onValueChange={(profileId) => form.setValue("profileId", profileId)} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -66,12 +69,12 @@ export function CreateVisitorForm() {
                 </FormItem>
               )}
             />
-          </form>
-        </Form>
-      </CardContent>
-      <CardFooter>
-        <Button type="submit">Create</Button>
-      </CardFooter>
-    </Card>
+          </CardContent>
+          <CardFooter>
+            <Button type="submit">Create</Button>
+          </CardFooter>
+        </Card>
+      </form>
+    </Form>
   );
 }
