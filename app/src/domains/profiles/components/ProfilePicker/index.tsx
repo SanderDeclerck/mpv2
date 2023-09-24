@@ -23,16 +23,23 @@ export const ProfilePicker = React.forwardRef(() => {
           {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[400px] max-w-[100vw] p-0">
+      <PopoverContent className="w-[--radix-popover-trigger-width] max-w-[100vw] p-0">
         <Command>
           <CommandInput placeholder="Search profile..." />
-          <CommandEmpty>No profile found.</CommandEmpty>
+
+          <CommandEmpty>
+            No profile found.
+            <br />
+            <Button className="mt-2 " variant="ghost">
+              Create new profile
+            </Button>
+          </CommandEmpty>
           <CommandGroup>
             {profiles?.map((profile) => (
               <CommandItem
                 key={profile.id}
-                onSelect={(currentValue) => {
-                  setValue(profiles?.find((_) => _.name === currentValue)?.id);
+                onSelect={() => {
+                  setValue(profile.id);
                   setOpen(false);
                 }}
               >
