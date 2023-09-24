@@ -1,21 +1,21 @@
 import * as React from "react";
 import { Check, ChevronsUpDown, Loader2 } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useProfiles } from "./api/profiles.get.api";
 import { FormControl } from "@/components/ui/form";
-import { ControllerRenderProps } from "react-hook-form";
 
 interface ProfilePickerProps {
-  profileId: number;
+  profileId: number | undefined;
   onValueChange: (profileId: number) => void;
 }
 
-export const ProfilePicker = React.forwardRef(({ profileId, onValueChange }: ProfilePickerProps, ref) => {
+export const ProfilePicker = React.forwardRef(({ profileId, onValueChange }: ProfilePickerProps, _ref) => {
   const [open, setOpen] = React.useState(false);
+
+  const hasSelection = profileId !== undefined;
 
   const { data: profiles, isLoading } = useProfiles();
 
@@ -24,7 +24,7 @@ export const ProfilePicker = React.forwardRef(({ profileId, onValueChange }: Pro
       <PopoverTrigger asChild>
         <FormControl>
           <Button disabled={isLoading} variant="outline" role="combobox" aria-expanded={open} className="w-full justify-between">
-            {profileId && profiles ? profiles.find((_) => _.id === profileId)?.name : "Select profile..."}
+            {hasSelection && profiles ? profiles.find((_) => _.id === profileId)?.name : "Select profile..."}
             {isLoading ? (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             ) : (
@@ -33,7 +33,7 @@ export const ProfilePicker = React.forwardRef(({ profileId, onValueChange }: Pro
           </Button>
         </FormControl>
       </PopoverTrigger>
-      <PopoverContent className="w-[--radix-popover-trigger-width] max-w-[100vw] p-0">
+      <PopoverContent className="w-[--radix-popover-trigger-width]  p-0">
         <Command>
           <CommandInput placeholder="Search profile..." />
           <CommandEmpty>
@@ -44,16 +44,16 @@ export const ProfilePicker = React.forwardRef(({ profileId, onValueChange }: Pro
             </Button>
           </CommandEmpty>
           <CommandGroup>
-            {profiles?.map((profile) => (
+            {profiles?.map(({ id, name }) => (
               <CommandItem
-                key={profile.id}
+                key={id}
                 onSelect={() => {
-                  onValueChange(profile.id);
+                  onValueChange(id);
                   setOpen(false);
                 }}
               >
-                <Check className={cn("mr-2 h-4 w-4", profileId === profile.id ? "opacity-100" : "opacity-0")} />
-                {profile.name}
+                <Check className={cn("mr-2 h-4 w-4", profileId === id ? "opacity-100" : "opacity-0")} />
+                {name}
               </CommandItem>
             ))}
           </CommandGroup>
