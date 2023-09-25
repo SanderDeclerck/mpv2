@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import z from "zod";
+import axios from "axios";
 
 export const profilesPostParams = z.object({
   profileId: z.number(),
@@ -23,9 +24,8 @@ export type ProfilesPostResponse = ProfilesPostSuccessResponse | ProfilesPostErr
 
 export const postVisitor = async (params: ProfilesPostParams): Promise<ProfilesPostResponse> => {
   profilesPostParams.parse(params);
-  const response = await fetch(import.meta.env.VITE_API + "/profiles", { method: "POST", body: JSON.stringify(params) });
-  const json = await response.json();
-  const validated = profilesPostSuccessResponse.or(profilesPostErrorResponse).parse(json);
+  const response = await axios.post<ProfilesPostResponse>(import.meta.env.VITE_API + "/visitor/create", params);
+  const validated = profilesPostSuccessResponse.or(profilesPostErrorResponse).parse(response.data);
   return validated;
 };
 
