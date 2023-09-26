@@ -27,6 +27,7 @@ app.get("/setState", (req, res) => {
   const state = req.query.state as string;
   console.log("server setting state", state);
   setState(state);
+  res.sendStatus(201);
 });
 
 // app.get("/tasks", (_, res) => {
