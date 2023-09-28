@@ -30,7 +30,7 @@ app.get("/setState", (req, res) => {
   res.sendStatus(201);
 });
 
-require("../domains/visitors/create/api/createVisitor.post/mock.ts");
+require("../domains/visitors/api/createVisitor.post/mock.ts");
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

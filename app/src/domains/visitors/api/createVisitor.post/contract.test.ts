@@ -1,6 +1,7 @@
 import { describe } from "node:test";
 import { expect, test } from "vitest";
-import { postVisitor, profilesPostErrorResponse, profilesPostSuccessResponse } from ".";
+import { postVisitor } from ".";
+import { profilesPostErrorResponse, profilesPostSuccessResponse } from "./schemas";
 
 const setState = async (state: string) => {
   await fetch(import.meta.env.VITE_API + "/setState?state=" + state);

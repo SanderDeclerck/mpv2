@@ -1,5 +1,5 @@
 import { Toaster } from "./components/ui/toaster";
-import { CreateVisitorPage } from "./domains/visitors/create";
+import { CreateVisitorPage } from "./domains/visitors/components/CreateVisitor";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
