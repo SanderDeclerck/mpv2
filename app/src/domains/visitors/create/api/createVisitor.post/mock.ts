@@ -1,11 +1,7 @@
-import { Express } from "express";
-import { state } from "./state";
+import { registerMock } from "@/server/registerMock";
+import { state } from "@/server/state";
 
-export const registerVisitorRoutes = (app: Express): void => {
-  app.get("/visitor/create", (_, res) => {
-    setTimeout(() => {}, 1000);
-  });
-
+registerMock((app) => {
   app.post("/visitor/create", (req, res) => {
     if (state === "I already have a username with name 'test'") {
       res.json({ error: "usernameAlreadyExists" });
@@ -15,4 +11,4 @@ export const registerVisitorRoutes = (app: Express): void => {
     console.log("server creating visitor", result);
     res.json(result);
   });
-};
+});

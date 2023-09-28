@@ -1,15 +1,15 @@
-import express, { json } from "express";
+import { json } from "express";
 import cors from "cors";
 import { registerVisitorRoutes } from "./visitors";
 import { registerProfileRoutes } from "./profiles";
 import { setState } from "./state";
+import { app } from "./app";
 
-const app = express();
 const port = 4000;
 
 app.use(cors({ origin: "*" }));
 
-app.use((req, res, next) => {
+app.use((_req, _res, next) => {
   // res.set("Cache-Control", "no-cache, no-transform");
   next();
 });
@@ -29,6 +29,8 @@ app.get("/setState", (req, res) => {
   setState(state);
   res.sendStatus(201);
 });
+
+require("../domains/visitors/create/api/createVisitor.post/mock.ts");
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

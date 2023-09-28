@@ -1,0 +1,17 @@
+{
+  // This is an alias to @tsconfig/node16: https://github.com/tsconfig/bases
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["es2021"],
+    "module": "node16",
+    "target": "es2021",
+
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node16"
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
+}

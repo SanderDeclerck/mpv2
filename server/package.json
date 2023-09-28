@@ -1,10 +1,11 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "serve": "nodemon -e ts -x \"ts-node ./index.ts\"",
+    "serve": "nodemon -e ts -x \"ts-node --experimental-specifier-resolution=node --project tsconfig.server.json ./foo.ts\"",
     "blobber": "nodemon -e ts -x \"ts-node ./blobber.js\""
   },
   "author": "",
