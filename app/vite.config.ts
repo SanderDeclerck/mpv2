@@ -4,6 +4,11 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    watch: {
+      ignored: ["**/server/**", "**/**mock.ts", "**/**test.ts"],
+    },
+  },
   plugins: [react()],
   resolve: {
     alias: {
