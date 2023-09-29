@@ -1,7 +1,7 @@
 import axios from "axios";
 import { z } from "zod";
 
-const apiUrl = (url: string) => import.meta.env.VITE_API + url;
+const apiUrl = (url: string) => "http://localhost:4000" + url; //import.meta.env.VITE_API + url;
 
 export const get = (url: string) => {
   return {
@@ -17,17 +17,29 @@ export const get = (url: string) => {
   };
 };
 
+export interface PostFn<ZBodyType, ZResponseType> {
+  (body: ZBodyType): Promise<ZResponseType>;
+  url: string;
+}
+
+export type Body<P> = P extends PostFn<infer ZBodyType, unknown> ? ZBodyType : never;
+
 export const post = (url: string) => {
   return {
-    body: <ZBody extends z.ZodTypeAny, ZBodyType = z.infer<ZBody>>(body: ZBodyType, bodySchema: ZBody) => {
+    body: <ZBody extends z.ZodTypeAny, ZBodyType = z.infer<ZBody>>(bodySchema: ZBody) => {
       return {
-        returns: async <ZResponse extends z.ZodTypeAny, ZResponseType = z.infer<ZResponse>>(
+        returns: <ZResponse extends z.ZodTypeAny, ZResponseType = z.infer<ZResponse>>(
           responseSchema: ZResponse
-        ): Promise<ZResponseType> => {
-          const parsedBody = bodySchema.parse(body);
-          const response = await axios.post(apiUrl(url), parsedBody);
-          const parsedResponse = responseSchema.parse(response.data);
-          return parsedResponse;
+        ): PostFn<ZBodyType, ZResponseType> => {
+          const callFn = async (body: ZBodyType) => {
+            const parsedBody = bodySchema.parse(body);
+            const response = await axios.post(apiUrl(url), parsedBody);
+            const parsedResponse = responseSchema.parse(response.data);
+            return parsedResponse;
+          };
+          callFn.url = url;
+
+          return callFn;
           // Todo: handle errors
           // Todo: status codes
         },
