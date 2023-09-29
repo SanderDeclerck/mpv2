@@ -49,7 +49,10 @@ export function CreateVisitorForm() {
                 <FormItem>
                   <FormLabel>Profile</FormLabel>
                   <FormControl>
-                    <ProfilePicker profileId={field.value} onValueChange={(profileId) => form.setValue("profileId", profileId)} />
+                    <ProfilePicker
+                      profileId={field.value}
+                      onValueChange={(profileId) => form.setValue("profileId", profileId)}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
