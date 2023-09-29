@@ -26,3 +26,12 @@ Allows for decoupled front-end (FE) / back-end (BE) development.
   - test watcher
   - server watching mocks
   - vite server HMR
+
+
+## Why Radix/Shadcn
+MUI too hard to customize. You __always__ have to do much more customization than you think.
+
+Radix: headless components
+
+Shadcn: Radix + Tailwind theme
+![image](https://github.com/ThomasStock/mpv2/assets/8448483/53882c6a-9034-4ec7-87e2-1a4250d5aa4d)
