@@ -1,30 +1,29 @@
 import axios from "axios";
 import { z } from "zod";
 
+// Todo: use import.meta.env.VITE_API in server?
 const apiUrl = (url: string) => "http://localhost:4000" + url; //import.meta.env.VITE_API + url;
 
-export const get = (url: string) => {
-  return {
-    returns: async <ZResponse extends z.ZodTypeAny, ZResponseType = z.infer<ZResponse>>(
-      responseSchema: ZResponse
-    ): Promise<ZResponseType> => {
-      const response = await axios.get(apiUrl(url));
-      const parsedResponse = responseSchema.parse(response.data);
-      return parsedResponse;
-      // Todo: handle errors
-      // Todo: status codes
-    },
-  };
-};
-
-export interface PostFn<ZBodyType, ZResponseType> {
-  (body: ZBodyType): Promise<ZResponseType>;
+const method = {
+  get: "get",
+  post: "post",
+} as const;
+export interface ApiFn {
   url: string;
+  method: keyof typeof method;
+}
+
+export interface PostFn<ZBodyType, ZResponseType> extends ApiFn {
+  (body: ZBodyType): Promise<ZResponseType>;
+}
+
+export interface GetFn<ZResponseType> extends ApiFn {
+  (): Promise<ZResponseType>;
 }
 
 export type Body<P> = P extends PostFn<infer ZBodyType, unknown> ? ZBodyType : never;
 
-export const post = (url: string) => {
+const post = (url: string) => {
   return {
     body: <ZBody extends z.ZodTypeAny, ZBodyType = z.infer<ZBody>>(bodySchema: ZBody) => {
       return {
@@ -38,6 +37,7 @@ export const post = (url: string) => {
             return parsedResponse;
           };
           callFn.url = url;
+          callFn.method = method.post;
 
           return callFn;
           // Todo: handle errors
@@ -47,3 +47,25 @@ export const post = (url: string) => {
     },
   };
 };
+
+const get = (url: string) => {
+  return {
+    returns: <ZResponse extends z.ZodTypeAny, ZResponseType = z.infer<ZResponse>>(
+      responseSchema: ZResponse
+    ): GetFn<ZResponseType> => {
+      const callFn = async () => {
+        const response = await axios.get(apiUrl(url));
+        const parsedResponse = responseSchema.parse(response.data);
+        return parsedResponse;
+      };
+      callFn.url = url;
+      callFn.method = method.get;
+
+      return callFn;
+      // Todo: handle errors
+      // Todo: status codes
+    },
+  };
+};
+
+export const api = { get, post };

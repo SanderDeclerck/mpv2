@@ -6,13 +6,14 @@
     "dev": "concurrently \"npm run app:dev\" \"npm run serve\" \"npm run test:delayed\"",
     "app:dev": "cd ./app && npm run dev",
     "serve": "cd ./app && npm run serve",
-    "test": "cd ./app && npm run test",
-    "test:delayed": "cd ./app && sleep 3 && npm run test"
+    "test:contract": "cd ./app && npm run test:contract",
+    "test:contract:delayed": "cd ./app && sleep 3 && npm run test:contract"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^8.2.0",
+    "glob": "^10.3.10",
     "typescript": "^5.2.2"
   }
 }

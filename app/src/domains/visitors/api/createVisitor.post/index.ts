@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { post } from "@/lib/createApi";
+import { api } from "@/lib/createApi";
 import { z } from "zod";
 
 export const profilesPostParams = z.object({
@@ -17,7 +17,8 @@ export const profilesPostErrorResponse = z.object({
   error: z.enum(["usernameAlreadyExists", "noRights"]),
 });
 
-export const postVisitor = post("/visitor/create")
+export const postVisitor = api
+  .post("/visitor/create")
   .body(profilesPostParams)
   .returns(profilesPostSuccessResponse.or(profilesPostErrorResponse));
 
