@@ -6,7 +6,7 @@ function App() {
   const queryClient = new QueryClient();
 
   return (
-    <div className="flex flex-row h-screen bg-primary p-12">
+    <div className="flex flex-row h-full bg-primary p-12">
       <QueryClientProvider client={queryClient}>
         <CreateVisitorPage />
         <Toaster />
