@@ -11,7 +11,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 const FormSchema = z.object({
   profileId: z.number(),
-  username: z.string().min(3),
+  username: z.string().trim().min(1),
 });
 
 export function CreateVisitorForm() {
