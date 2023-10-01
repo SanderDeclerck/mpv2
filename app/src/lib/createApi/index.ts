@@ -22,7 +22,7 @@ export interface GetFn<ZResponseType> extends ApiFn {
 }
 
 export const setState = async (state: string) => {
-  await fetch(import.meta.env.VITE_API + "/setState?state=" + state);
+  await fetch(apiUrl("/setState?state=" + state));
 };
 
 export type Body<P> = P extends PostFn<infer ZBodyType, unknown> ? ZBodyType : never;
