@@ -23,7 +23,13 @@ export const ProfilePicker = React.forwardRef(({ profileId, onValueChange }: Pro
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <FormControl>
-          <Button disabled={isLoading} variant="outline" role="combobox" aria-expanded={open} className="w-full justify-between">
+          <Button
+            disabled={isLoading}
+            variant="outline"
+            role="combobox"
+            aria-expanded={open}
+            className="w-full justify-between"
+          >
             {hasSelection && profiles ? profiles.find((_) => _.id === profileId)?.name : "Select profile..."}
             {isLoading ? (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />

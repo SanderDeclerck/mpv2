@@ -7,13 +7,15 @@
     "app:dev": "cd ./app && npm run dev",
     "serve": "cd ./app && npm run serve",
     "test:contract": "cd ./app && npm run test:contract",
-    "test:contract:delayed": "cd ./app && sleep 3 && npm run test:contract"
+    "test:contract:delayed": "cd ./app && sleep 3 && npm run test:contract",
+    "prettier": "prettier -w app"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^8.2.0",
     "glob": "^10.3.10",
+    "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   }
 }

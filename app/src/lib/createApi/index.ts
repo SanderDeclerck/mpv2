@@ -32,7 +32,7 @@ const post = (url: string) => {
     body: <ZBody extends z.ZodTypeAny, ZBodyType = z.infer<ZBody>>(bodySchema: ZBody) => {
       return {
         returns: <ZResponse extends z.ZodTypeAny, ZResponseType = z.infer<ZResponse>>(
-          responseSchema: ZResponse
+          responseSchema: ZResponse,
         ): PostFn<ZBodyType, ZResponseType> => {
           const callFn = async (body: ZBodyType) => {
             const parsedBody = bodySchema.parse(body);
@@ -55,7 +55,7 @@ const post = (url: string) => {
 const get = (url: string) => {
   return {
     returns: <ZResponse extends z.ZodTypeAny, ZResponseType = z.infer<ZResponse>>(
-      responseSchema: ZResponse
+      responseSchema: ZResponse,
     ): GetFn<ZResponseType> => {
       const callFn = async () => {
         const response = await axios.get(apiUrl(url));

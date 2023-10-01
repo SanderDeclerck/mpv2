@@ -6,7 +6,7 @@ export const profilesGet = z.array(
   z.object({
     id: z.number(),
     name: z.string(),
-  })
+  }),
 );
 
 export const getProfiles = api.get("/profiles").returns(profilesGet);
