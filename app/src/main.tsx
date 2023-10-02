@@ -1,7 +1,6 @@
-import ReactDOM from "react-dom/client";
-import "./index.css";
-
 import { RouterProvider } from "@tanstack/react-router";
-import { router } from "./domains/app/router";
+import ReactDOM from "react-dom/client";
+import { router } from "./domains/routes";
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(<RouterProvider router={router} />);

@@ -1,7 +1,7 @@
 import { describe } from "node:test";
 import { expect, test } from "vitest";
-import { postVisitor, visitorPostError, visitorPostSuccess } from ".";
 import { setState } from "@/lib/createApi";
+import { postVisitor, visitorPostError, visitorPostSuccess } from ".";
 
 describe("create visitor POST", () => {
   test("returns a visitor", async () => {

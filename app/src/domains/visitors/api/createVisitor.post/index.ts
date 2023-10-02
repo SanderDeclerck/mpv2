@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { api } from "@/lib/createApi";
 import { z } from "zod";
+import { api } from "@/lib/createApi";
 
 export const visitorPostBody = z.object({
   profileId: z.number(),

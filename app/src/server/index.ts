@@ -1,10 +1,10 @@
-import { json } from "express";
 import cors from "cors";
-import { registerVisitorRoutes } from "./visitors";
+import { json } from "express";
+import { glob } from "glob";
+import { app } from "./app";
 import { registerProfileRoutes } from "./profiles";
 import { setState } from "./state";
-import { app } from "./app";
-import { glob } from "glob";
+import { registerVisitorRoutes } from "./visitors";
 
 const port = 4000;
 

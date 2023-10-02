@@ -1,9 +1,9 @@
-import { Home } from ".";
 import { Route } from "@tanstack/react-router";
-import { rootRoute } from "../App/rootRoute";
+import { appRoute } from "../App/route";
+import { Home } from ".";
 
 export const homeRoute = new Route({
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => appRoute,
   path: "/",
   component: Home,
 });

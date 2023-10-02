@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
-import { app } from "./app";
 import { PostFn } from "@/lib/createApi";
+import { app } from "./app";
 
 export const registerMock = <Body, Response>(
   apiCall: PostFn<Body, Response>,

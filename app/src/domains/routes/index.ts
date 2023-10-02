@@ -1,11 +1,10 @@
 import { Router } from "@tanstack/react-router";
-
-import { rootRoute } from "./components/App/rootRoute";
-import { aboutRouteTree } from "./components/About/route";
-import { homeRoute } from "./components/Home/route";
+import { aboutRoute } from "../app/components/About/route";
+import { appRoute } from "../app/components/App/route";
+import { homeRoute } from "../app/components/Home/route";
 
 // Create the route tree using your routes
-const routeTree = rootRoute.addChildren([homeRoute, aboutRouteTree]);
+const routeTree = appRoute.addChildren([homeRoute, aboutRoute]);
 
 // Create the router using your route tree
 export const router = new Router({ routeTree });

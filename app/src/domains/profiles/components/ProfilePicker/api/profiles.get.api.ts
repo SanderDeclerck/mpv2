@@ -1,6 +1,6 @@
-import { api } from "@/lib/createApi";
 import { useQuery } from "@tanstack/react-query";
 import z from "zod";
+import { api } from "@/lib/createApi";
 
 export const profilesGet = z.array(
   z.object({
