@@ -35,3 +35,10 @@ Radix: headless components
 
 Shadcn: Radix + Tailwind theme
 ![image](https://github.com/ThomasStock/mpv2/assets/8448483/53882c6a-9034-4ec7-87e2-1a4250d5aa4d)
+
+## Tanstack Router
+
+- A bit risky since it's in beta but has incredible DX to avoid bugs
+- Have to keep an eye on this and leave a way out in case it dies
+
+![image](https://github.com/ThomasStock/mpv2/assets/8448483/4e0f1f75-2002-40e7-8323-0dff5c0befc1)
