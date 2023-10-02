@@ -41,4 +41,6 @@ Shadcn: Radix + Tailwind theme
 - A bit risky since it's in beta but has incredible DX to avoid bugs
 - Have to keep an eye on this and leave a way out in case it dies
 
+"Why not React Router?"
+- We had an absolutely horrible experience upgrading React Router (ask Lyderic)
 ![image](https://github.com/ThomasStock/mpv2/assets/8448483/4e0f1f75-2002-40e7-8323-0dff5c0befc1)
