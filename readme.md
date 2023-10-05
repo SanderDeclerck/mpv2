@@ -46,3 +46,7 @@ https://www.youtube.com/watch?v=smJ8UKiDHNI
 "Why not React Router?"
 - We had an absolutely horrible experience upgrading React Router (ask Lyderic)
 ![image](https://github.com/ThomasStock/mpv2/assets/8448483/4e0f1f75-2002-40e7-8323-0dff5c0befc1)
+
+## Component composition vs inheritance (no god components)
+
+![image](https://github.com/ThomasStock/mpv2/assets/8448483/5a4a07b3-6daf-45be-9054-4486e012da74)
