@@ -40,12 +40,14 @@ function App() {
           <Menu />
         </div>
       </div>
+
       <div className="pl-[19.5rem]">
         <main className="pt-10 px-4 lg:px-12 xl:px-16">
           <Outlet />
           <Toaster />
         </main>
       </div>
+      <div className="bg-peri-gradient h-screen absolute top-0 left-[19.5rem] bottom-0 right-0 -z-10 overflow-hidden pointer-events-none"></div>
     </QueryClientProvider>
   );
 }

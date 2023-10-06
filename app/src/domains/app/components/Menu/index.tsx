@@ -11,9 +11,12 @@ const MenuLink: LinkComponent = (props) => {
   return (
     <NavigationMenuLink
       asChild
-      className="group/link  flex items-center text-sm leading-6 mb-4 font-medium text-slate-700 hover:text-slate-900"
+      className="group/link flex items-center text-sm leading-6 mb-4 font-medium text-slate-700 hover:text-slate-900
+      data-[status=active]:text-primary 
+      data-[status=active]:font-semibold 
+      data-[status=active]:border-current"
     >
-      <Link {...props} />
+      <Link to="asdad" {...props} />
     </NavigationMenuLink>
   );
 };
@@ -80,7 +83,8 @@ export const Menu = () => (
           About
         </MenuLink>
       </NavigationMenuItem>
-
+    </NavigationMenuList>
+    <NavigationMenuList>
       <MenuGroup title="Profiles">
         <SubMenuLink>Outbound</SubMenuLink>
         <SubMenuLink>Inbound</SubMenuLink>
