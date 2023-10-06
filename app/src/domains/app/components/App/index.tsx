@@ -10,7 +10,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="sticky top-0 z-40 w-full border-b backdrop-blur bg-white/95  ">
+      <div className="sticky top-0 z-40 w-full border-b backdrop-blur bg-white/95">
         <div className="flex justify-between items-center">
           <div className="pl-10 py-4 ">MPV2</div>
           <div className="pr-4">
@@ -41,8 +41,7 @@ function App() {
         </div>
       </div>
       <div className="pl-[19.5rem]">
-        <main className="pt-10">
-          <h1>Outlet time</h1>
+        <main className="pt-10 px-4 lg:px-12 xl:px-16">
           <Outlet />
           <Toaster />
         </main>

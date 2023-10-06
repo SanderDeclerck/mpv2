@@ -1,5 +1,5 @@
 import { Link, LinkComponent } from "@tanstack/react-router";
-import { FileCog2Icon, HomeIcon, InfoIcon, LucideIcon, Users2Icon } from "lucide-react";
+import { FileCog2Icon, HomeIcon, InfoIcon, LucideIcon, Users2Icon, ZapIcon } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -66,6 +66,12 @@ export const Menu = () => (
         <MenuLink>
           <MenuIcon icon={FileCog2Icon} />
           Logging
+        </MenuLink>
+      </NavigationMenuItem>
+      <NavigationMenuItem>
+        <MenuLink to="/triggers" from="/">
+          <MenuIcon icon={ZapIcon} />
+          Triggers & Actions
         </MenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
