@@ -1,8 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { z } from "zod";
-import { triggerSchema } from "../../schemas";
-
-type Trigger = z.infer<typeof triggerSchema>;
+import { Trigger } from "../../schemas";
 
 export const triggerColumns: ColumnDef<Trigger>[] = [
   {

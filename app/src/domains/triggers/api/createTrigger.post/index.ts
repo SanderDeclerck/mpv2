@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
 import { api } from "@/lib/createApi";
-import { triggerSchema } from "../../schemas";
+import { Trigger } from "../../schemas";
 
-export const CreateTriggerSchema = triggerSchema.omit({ id: true });
+export const CreateTriggerSchema = Trigger.omit({ id: true });
 
-export const triggerPostSuccess = triggerSchema;
+export const triggerPostSuccess = Trigger;
 
 export const postTrigger = api
   .post("/triggers/create")
