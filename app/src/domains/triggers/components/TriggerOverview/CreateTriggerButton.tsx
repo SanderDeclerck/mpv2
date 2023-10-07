@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { PlusIcon } from "lucide-react";
-import { Button, ButtonProps } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/~button";
 
 export const CreateTriggerButton = (props: ButtonProps) => (
   <Button asChild {...props}>

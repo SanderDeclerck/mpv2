@@ -19,7 +19,7 @@ export const TriggerCreate = () => {
             Triggers
           </Link>
         </BreadcrumbLinkWithIcon>
-        <BreadcrumbCurrentPage>Create</BreadcrumbCurrentPage>
+        <BreadcrumbCurrentPage>Create a trigger</BreadcrumbCurrentPage>
       </Breadcrumb>
       <h1>Create a trigger</h1>
     </div>

@@ -1,8 +1,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet } from "@tanstack/react-router";
 import { SearchIcon, User2Icon } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/toaster";
+import { Button } from "@/components/ui/~button";
 import { Menu } from "../Menu";
 
 function App() {
@@ -12,7 +12,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <div className="sticky top-0 z-40 w-full border-b backdrop-blur bg-white/95">
         <div className="flex justify-between items-center">
-          <div className="pl-10 py-3 font-extrabold text-peripass text-lg">MPV2</div>
+          <div className="pl-10 py-3 font-extrabold text-2xl">
+            <span className="bg-clip-text bg-peri-gradient text-transparent">MPV2</span>
+          </div>
           <div className="pr-4">
             <Button variant="ghost" size="icon">
               <User2Icon className="h-5 w-5 stroke-foreground" />
@@ -47,7 +49,7 @@ function App() {
           <Toaster />
         </main>
       </div>
-      <div className="bg-peri-gradient h-screen absolute top-0 left-[19.5rem] bottom-0 right-0 -z-10 overflow-hidden pointer-events-none"></div>
+      <div className="bg-peri-gradient-transparent h-screen absolute top-0 left-[19.5rem] bottom-0 right-0 -z-10 overflow-hidden pointer-events-none"></div>
     </QueryClientProvider>
   );
 }
