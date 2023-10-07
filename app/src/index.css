@@ -84,3 +84,9 @@
     @apply text-slate-900 text-xl tracking-tight font-bold mb-3;
   }
 }
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}

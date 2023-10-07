@@ -72,7 +72,7 @@ export const Menu = () => (
         </MenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <MenuLink to="/triggers" from="/">
+        <MenuLink to="/triggers">
           <MenuIcon icon={ZapIcon} />
           Triggers & Actions
         </MenuLink>
