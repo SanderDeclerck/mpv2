@@ -1,11 +1,12 @@
 import { Link, LinkComponent } from "@tanstack/react-router";
-import { FileCog2Icon, HomeIcon, InfoIcon, LucideIcon, Users2Icon, ZapIcon } from "lucide-react";
+import { FileCog2Icon, HomeIcon, InfoIcon, LucideIcon, Users2Icon } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/~vertical-navigation-menu";
+import { TriggerIcon } from "@/domains/triggers/components/TriggerIcon";
 
 const MenuLink: LinkComponent = (props) => {
   return (
@@ -73,7 +74,7 @@ export const Menu = () => (
       </NavigationMenuItem>
       <NavigationMenuItem>
         <MenuLink to="/triggers">
-          <MenuIcon icon={ZapIcon} />
+          <MenuIcon icon={TriggerIcon} />
           Triggers & Actions
         </MenuLink>
       </NavigationMenuItem>

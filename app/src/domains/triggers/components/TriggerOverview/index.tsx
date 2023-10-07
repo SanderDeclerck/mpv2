@@ -1,3 +1,14 @@
+import { Link } from "@tanstack/react-router";
+import {
+  Breadcrumb,
+  BreadcrumbCurrentPage,
+  BreadcrumbCurrentPageWithIcon,
+  BreadcrumbLinkWithIcon,
+  breadcrumbIconStyle,
+  breadcrumbLinkWithIconStyle,
+} from "@/components/Breadcrumb";
+import { cn } from "@/lib/utils";
+import { TriggerIcon } from "../TriggerIcon";
 import { CreateTriggerButton } from "./CreateTriggerButton";
 import { triggerColumns } from "./columns";
 import { DataTable } from "./data-table";
@@ -5,7 +16,12 @@ import { DataTable } from "./data-table";
 export const TriggerOverview = () => {
   return (
     <div className="flex flex-col ">
-      <p className="mb-12 text-sm leading-6 font-semibold text-primary">Triggers</p>
+      <Breadcrumb>
+        <BreadcrumbCurrentPageWithIcon>
+          <TriggerIcon className={cn(breadcrumbIconStyle())} />
+          <span>Triggers</span>
+        </BreadcrumbCurrentPageWithIcon>
+      </Breadcrumb>
       <CreateTriggerButton className="self-start mb-4" />
       <DataTable columns={triggerColumns} data={[]} />
     </div>
