@@ -75,4 +75,12 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  h1 {
+    @apply text-4xl font-extrabold text-slate-900 tracking-tight;
+  }
+
+  h2 {
+    @apply text-slate-900 text-xl tracking-tight font-bold mb-3;
+  }
 }

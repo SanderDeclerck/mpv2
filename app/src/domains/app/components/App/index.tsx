@@ -12,7 +12,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <div className="sticky top-0 z-40 w-full border-b backdrop-blur bg-white/95">
         <div className="flex justify-between items-center">
-          <div className="pl-10 py-4 ">MPV2</div>
+          <div className="pl-10 py-3 font-extrabold text-peripass text-lg">MPV2</div>
           <div className="pr-4">
             <Button variant="ghost" size="icon">
               <User2Icon className="h-5 w-5 stroke-foreground" />
@@ -42,7 +42,7 @@ function App() {
       </div>
 
       <div className="pl-[19.5rem]">
-        <main className="pt-10 px-4 lg:px-12 xl:px-16">
+        <main className="pt-8 px-4 lg:px-12 xl:px-16">
           <Outlet />
           <Toaster />
         </main>
