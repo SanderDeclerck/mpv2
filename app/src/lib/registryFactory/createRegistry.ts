@@ -10,7 +10,9 @@ export default function createRegistry<T>() {
     // eslint-disable-next-line no-prototype-builtins
     if (registry.hasOwnProperty(key)) {
       // eslint-disable-next-line no-console
-      console.warn(`A registration for key ${key} has already been registered.`);
+      console.warn(
+        `A registration for key ${key} has already been registered.`,
+      );
     }
     registry[key] = registration;
   };

@@ -1,8 +1,23 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/~button";
@@ -38,7 +53,10 @@ export function CreateVisitorForm() {
         <Card>
           <CardHeader>
             <CardTitle>Create Visitor</CardTitle>
-            <CardDescription>Create a new visitor by selecting a profile and filling in the fields.</CardDescription>
+            <CardDescription>
+              Create a new visitor by selecting a profile and filling in the
+              fields.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2 overflow-auto">
             <FormField
@@ -50,7 +68,9 @@ export function CreateVisitorForm() {
                   <FormControl>
                     <ProfilePicker
                       profileId={field.value}
-                      onValueChange={(profileId) => form.setValue("profileId", profileId)}
+                      onValueChange={(profileId) =>
+                        form.setValue("profileId", profileId)
+                      }
                     />
                   </FormControl>
                   <FormMessage />
@@ -66,7 +86,9 @@ export function CreateVisitorForm() {
                   <FormControl>
                     <Input placeholder="shadcn" {...field} />
                   </FormControl>
-                  <FormDescription>This is your public display name.</FormDescription>
+                  <FormDescription>
+                    This is your public display name.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

@@ -9,7 +9,14 @@ import {
   breadcrumbIconStyle,
   breadcrumbLinkWithIconStyle,
 } from "@/components/Breadcrumb";
-import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/~button";
@@ -58,7 +65,9 @@ export const TriggerCreate = () => {
                 <FormControl>
                   <ProfilePicker
                     profileId={field.value}
-                    onValueChange={(profileId) => form.setValue("profileId", profileId)}
+                    onValueChange={(profileId) =>
+                      form.setValue("profileId", profileId)
+                    }
                   />
                 </FormControl>
                 <FormMessage />
@@ -74,7 +83,9 @@ export const TriggerCreate = () => {
                 <FormControl>
                   <Input placeholder="shadcn" {...field} />
                 </FormControl>
-                <FormDescription>This is your public display name.</FormDescription>
+                <FormDescription>
+                  This is your public display name.
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}

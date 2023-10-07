@@ -15,7 +15,12 @@ export const About = () => {
       </pre>
       <Input
         value={search?.filter || ""}
-        onChange={(e) => navigate({ search: { ...search, filter: e.target.value }, replace: true })}
+        onChange={(e) =>
+          navigate({
+            search: { ...search, filter: e.target.value },
+            replace: true,
+          })
+        }
       />
       <h1>About</h1>
       <p>this is the About page</p>
@@ -24,7 +29,12 @@ export const About = () => {
       </pre>
       <Input
         value={search?.filter || ""}
-        onChange={(e) => navigate({ search: { ...search, filter: e.target.value }, replace: true })}
+        onChange={(e) =>
+          navigate({
+            search: { ...search, filter: e.target.value },
+            replace: true,
+          })
+        }
       />
       <h1>About</h1>
       <p>this is the About page</p>
@@ -33,7 +43,12 @@ export const About = () => {
       </pre>
       <Input
         value={search?.filter || ""}
-        onChange={(e) => navigate({ search: { ...search, filter: e.target.value }, replace: true })}
+        onChange={(e) =>
+          navigate({
+            search: { ...search, filter: e.target.value },
+            replace: true,
+          })
+        }
       />
       <h1>About</h1>
       <p>this is the About page</p>
@@ -42,7 +57,12 @@ export const About = () => {
       </pre>
       <Input
         value={search?.filter || ""}
-        onChange={(e) => navigate({ search: { ...search, filter: e.target.value }, replace: true })}
+        onChange={(e) =>
+          navigate({
+            search: { ...search, filter: e.target.value },
+            replace: true,
+          })
+        }
       />
       <h1>About</h1>
       <p>this is the About page</p>
@@ -51,7 +71,12 @@ export const About = () => {
       </pre>
       <Input
         value={search?.filter || ""}
-        onChange={(e) => navigate({ search: { ...search, filter: e.target.value }, replace: true })}
+        onChange={(e) =>
+          navigate({
+            search: { ...search, filter: e.target.value },
+            replace: true,
+          })
+        }
       />
       <h1>About</h1>
       <p>this is the About page</p>
@@ -60,7 +85,12 @@ export const About = () => {
       </pre>
       <Input
         value={search?.filter || ""}
-        onChange={(e) => navigate({ search: { ...search, filter: e.target.value }, replace: true })}
+        onChange={(e) =>
+          navigate({
+            search: { ...search, filter: e.target.value },
+            replace: true,
+          })
+        }
       />
       <h1>About</h1>
       <p>this is the About page</p>
@@ -69,7 +99,12 @@ export const About = () => {
       </pre>
       <Input
         value={search?.filter || ""}
-        onChange={(e) => navigate({ search: { ...search, filter: e.target.value }, replace: true })}
+        onChange={(e) =>
+          navigate({
+            search: { ...search, filter: e.target.value },
+            replace: true,
+          })
+        }
       />
       <h1>About</h1>
       <p>this is the About page</p>
@@ -78,7 +113,12 @@ export const About = () => {
       </pre>
       <Input
         value={search?.filter || ""}
-        onChange={(e) => navigate({ search: { ...search, filter: e.target.value }, replace: true })}
+        onChange={(e) =>
+          navigate({
+            search: { ...search, filter: e.target.value },
+            replace: true,
+          })
+        }
       />
       <h1>About</h1>
       <p>this is the About page</p>
@@ -87,7 +127,12 @@ export const About = () => {
       </pre>
       <Input
         value={search?.filter || ""}
-        onChange={(e) => navigate({ search: { ...search, filter: e.target.value }, replace: true })}
+        onChange={(e) =>
+          navigate({
+            search: { ...search, filter: e.target.value },
+            replace: true,
+          })
+        }
       />
       <h1>About</h1>
       <p>this is the About page</p>
@@ -96,7 +141,12 @@ export const About = () => {
       </pre>
       <Input
         value={search?.filter || ""}
-        onChange={(e) => navigate({ search: { ...search, filter: e.target.value }, replace: true })}
+        onChange={(e) =>
+          navigate({
+            search: { ...search, filter: e.target.value },
+            replace: true,
+          })
+        }
       />
       <h1>About</h1>
       <p>this is the About page</p>
@@ -105,7 +155,12 @@ export const About = () => {
       </pre>
       <Input
         value={search?.filter || ""}
-        onChange={(e) => navigate({ search: { ...search, filter: e.target.value }, replace: true })}
+        onChange={(e) =>
+          navigate({
+            search: { ...search, filter: e.target.value },
+            replace: true,
+          })
+        }
       />
       <Outlet />
     </div>

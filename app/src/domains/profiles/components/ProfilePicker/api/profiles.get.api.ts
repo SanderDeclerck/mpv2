@@ -7,4 +7,5 @@ export const profilesGet = z.array(profileSchema);
 
 export const getProfiles = api.get("/profiles").returns(profilesGet);
 
-export const useProfiles = () => useQuery({ queryKey: ["profiles"], queryFn: getProfiles });
+export const useProfiles = () =>
+  useQuery({ queryKey: ["profiles"], queryFn: getProfiles });

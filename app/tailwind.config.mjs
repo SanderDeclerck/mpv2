@@ -1,7 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./index.html", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./index.html",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     container: {
       center: true,
@@ -12,8 +17,10 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        "peri-gradient-transparent": "linear-gradient(90deg,#FFFFFF 0%, #00b5c615 30%,#00ad8207 100%)",
-        "peri-gradient-90": "linear-gradient(90deg,#00b5c6DD 00%,#00ad82DD 100%)",
+        "peri-gradient-transparent":
+          "linear-gradient(90deg,#FFFFFF 0%, #00b5c615 30%,#00ad8207 100%)",
+        "peri-gradient-90":
+          "linear-gradient(90deg,#00b5c6DD 00%,#00ad82DD 100%)",
         "peri-gradient": "linear-gradient(90deg,#00b5c6 00%,#00ad82 100%)",
       },
       colors: {

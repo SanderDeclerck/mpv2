@@ -32,7 +32,9 @@ app.get("/setState", (req, res) => {
 });
 
 // import all mocks
-const mockFiles = glob.sync("**/api/**/**?(.)mock.ts", { ignore: ["node_modules/**"] });
+const mockFiles = glob.sync("**/api/**/**?(.)mock.ts", {
+  ignore: ["node_modules/**"],
+});
 mockFiles.forEach(require);
 
 app.listen(port, () => {

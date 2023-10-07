@@ -6,6 +6,10 @@ import { postTrigger } from ".";
 describe("create trigger POST", () => {
   test("returns a trigger", async () => {
     await setState("");
-    await postTrigger({ type: "StatusChange", active: true, actions: ["SendEmail"] });
+    await postTrigger({
+      type: "StatusChange",
+      active: true,
+      actions: ["SendEmail"],
+    });
   });
 });

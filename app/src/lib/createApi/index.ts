@@ -25,13 +25,20 @@ export const setState = async (state: string) => {
   await fetch(apiUrl("/setState?state=" + state));
 };
 
-export type Body<P> = P extends PostFn<infer ZBodyType, unknown> ? ZBodyType : never;
+export type Body<P> = P extends PostFn<infer ZBodyType, unknown>
+  ? ZBodyType
+  : never;
 
 const post = (url: string) => {
   return {
-    body: <ZBody extends z.ZodTypeAny, ZBodyType = z.infer<ZBody>>(bodySchema: ZBody) => {
+    body: <ZBody extends z.ZodTypeAny, ZBodyType = z.infer<ZBody>>(
+      bodySchema: ZBody,
+    ) => {
       return {
-        returns: <ZResponse extends z.ZodTypeAny, ZResponseType = z.infer<ZResponse>>(
+        returns: <
+          ZResponse extends z.ZodTypeAny,
+          ZResponseType = z.infer<ZResponse>,
+        >(
           responseSchema: ZResponse,
         ): PostFn<ZBodyType, ZResponseType> => {
           const callFn = async (body: ZBodyType) => {
@@ -54,7 +61,10 @@ const post = (url: string) => {
 
 const get = (url: string) => {
   return {
-    returns: <ZResponse extends z.ZodTypeAny, ZResponseType = z.infer<ZResponse>>(
+    returns: <
+      ZResponse extends z.ZodTypeAny,
+      ZResponseType = z.infer<ZResponse>,
+    >(
       responseSchema: ZResponse,
     ): GetFn<ZResponseType> => {
       const callFn = async () => {

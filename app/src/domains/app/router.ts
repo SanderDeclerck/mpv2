@@ -1,6 +1,9 @@
 import { Router } from "@tanstack/react-router";
 import { triggerCreateRoute } from "../triggers/components/Create/route";
-import { triggerOverviewRoute, triggersRoute } from "../triggers/components/TriggerOverview/route";
+import {
+  triggerOverviewRoute,
+  triggersRoute,
+} from "../triggers/components/TriggerOverview/route";
 import { aboutRoute } from "./components/About/route";
 import { appRoute } from "./components/App/route";
 import { homeRoute } from "./components/Home/route";

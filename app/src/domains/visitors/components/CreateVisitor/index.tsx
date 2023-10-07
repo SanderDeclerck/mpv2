@@ -1,4 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CreateVisitorForm } from "./form";
 
@@ -16,7 +22,9 @@ export function CreateVisitorPage() {
         <Card>
           <CardHeader>
             <CardTitle>Something else here</CardTitle>
-            <CardDescription>Change your password here. After saving, you'll be logged out.</CardDescription>
+            <CardDescription>
+              Change your password here. After saving, you'll be logged out.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">bla bla</CardContent>
         </Card>

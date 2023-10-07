@@ -1,4 +1,8 @@
-import { Breadcrumb, BreadcrumbCurrentPageWithIcon, breadcrumbIconStyle } from "@/components/Breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbCurrentPageWithIcon,
+  breadcrumbIconStyle,
+} from "@/components/Breadcrumb";
 import { cn } from "@/lib/utils";
 import { TriggerIcon } from "../TriggerIcon";
 import { CreateTriggerButton } from "./CreateTriggerButton";

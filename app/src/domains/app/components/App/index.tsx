@@ -13,7 +13,9 @@ function App() {
       <div className="sticky top-0 z-40 w-full border-b backdrop-blur bg-white/95">
         <div className="flex justify-between items-center">
           <div className="pl-10 py-3 font-extrabold text-2xl">
-            <span className="bg-clip-text bg-peri-gradient text-transparent">MPV2</span>
+            <span className="bg-clip-text bg-peri-gradient text-transparent">
+              MPV2
+            </span>
           </div>
           <div className="pr-4">
             <Button variant="ghost" size="icon">

@@ -1,5 +1,11 @@
 import { Link, LinkComponent } from "@tanstack/react-router";
-import { FileCog2Icon, HomeIcon, InfoIcon, LucideIcon, Users2Icon } from "lucide-react";
+import {
+  FileCog2Icon,
+  HomeIcon,
+  InfoIcon,
+  LucideIcon,
+  Users2Icon,
+} from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -38,7 +44,13 @@ const SubMenuLink: LinkComponent = (props) => {
   );
 };
 
-const MenuGroup = ({ title, children }: { title: string; children: React.ReactNode }) => (
+const MenuGroup = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) => (
   <li className="mt-8">
     <h5 className="mb-3 font-semibold text-primary">{title}</h5>
     <ul className="space-y-2 border-l border-slate-100">{children}</ul>
