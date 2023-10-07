@@ -43,7 +43,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
             <TableRow>
               <TableCell colSpan={columns.length} className="h-48 text-center">
                 <div className="italic text-muted-foreground/70 text-base">No triggers yet</div>
-                <CreateTriggerButton className="mt-8" />
+                <CreateTriggerButton variant="outline" className="mt-6" />
               </TableCell>
             </TableRow>
           )}

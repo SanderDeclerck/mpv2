@@ -14,7 +14,7 @@ export const TriggerOverview = () => {
           <span>Triggers</span>
         </BreadcrumbCurrentPageWithIcon>
       </Breadcrumb>
-      <CreateTriggerButton className="self-start mb-4" />
+      <CreateTriggerButton className="self-start mb-8" />
       <DataTable columns={triggerColumns} data={[]} />
     </div>
   );
