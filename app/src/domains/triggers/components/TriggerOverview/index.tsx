@@ -11,9 +11,10 @@ export const TriggerOverview = () => {
       <Breadcrumb>
         <BreadcrumbCurrentPageWithIcon>
           <TriggerIcon className={cn(breadcrumbIconStyle())} />
-          <span>Triggers</span>
+          Triggers
         </BreadcrumbCurrentPageWithIcon>
       </Breadcrumb>
+
       <CreateTriggerButton className="self-start mb-8" />
       <DataTable columns={triggerColumns} data={[]} />
     </div>
