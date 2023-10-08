@@ -7,6 +7,11 @@ export const ActionType = z.enum([
   "PrintTicket",
 ]);
 export type ActionType = z.infer<typeof ActionType>;
+export const actionTypeMap: ActionType[] = [
+  "FreeYardLocation",
+  "SendEmail",
+  "PrintTicket",
+];
 
 export const TriggerType = z.enum([
   "AssignedProfile",

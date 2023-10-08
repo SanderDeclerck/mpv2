@@ -9,4 +9,4 @@ export const postTrigger = api
   .body(CreateTrigger)
   .returns(triggerPostSuccess);
 
-export const useCreateVisitor = () => useMutation({ mutationFn: postTrigger });
+export const useCreateTrigger = () => useMutation({ mutationFn: postTrigger });

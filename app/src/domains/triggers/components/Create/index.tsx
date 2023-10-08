@@ -23,6 +23,7 @@ import {
 import { toast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/~button";
 import { cn } from "@/lib/utils";
+import { useCreateTrigger } from "../../api/createTrigger.post";
 import {
   CreateAssignedProfileTrigger,
   CreateStatusChangeTrigger,
@@ -39,16 +40,12 @@ export const TriggerCreate = () => {
     defaultValues: { active: true, actions: [] },
   });
 
-  console.log("errors", form.formState.errors);
+  const { mutateAsync, isLoading } = useCreateTrigger();
 
-  function onSubmit(data: z.infer<typeof CreateTrigger>) {
+  async function onSubmit(data: z.infer<typeof CreateTrigger>) {
+    await mutateAsync(data);
     toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
+      title: "Trigger created",
     });
   }
 
@@ -133,7 +130,7 @@ export const TriggerCreate = () => {
                   )}
                 />
                 <div>
-                  <Button className="mt-2" type="submit">
+                  <Button disabled={isLoading} className="mt-2" type="submit">
                     Create trigger
                   </Button>
                 </div>

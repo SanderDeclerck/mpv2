@@ -1,7 +1,7 @@
 import { registerMock } from "@/server/registerMock";
 import { getProfiles } from ".";
 
-const profiles = [
+export const profiles = [
   "B - All fields mandatory + dochandling",
   "A - All fields optional",
   "C - Realtime + e-ticket + check-out",

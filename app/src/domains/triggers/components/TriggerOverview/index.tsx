@@ -4,12 +4,16 @@ import {
   breadcrumbIconStyle,
 } from "@/components/Breadcrumb";
 import { cn } from "@/lib/utils";
+import { useTriggers } from "../../api/triggers.get";
 import { TriggerIcon } from "../TriggerIcon";
 import { CreateTriggerButton } from "./CreateTriggerButton";
 import { triggerColumns } from "./columns";
 import { DataTable } from "./data-table";
 
 export const TriggerOverview = () => {
+  const { data } = useTriggers();
+
+  console.log(data);
   return (
     <div className="flex flex-col ">
       <Breadcrumb>
