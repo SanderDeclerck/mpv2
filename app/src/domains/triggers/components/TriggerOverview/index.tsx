@@ -15,7 +15,7 @@ export const TriggerOverview = () => {
 
   console.log(data);
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col mb-12">
       <Breadcrumb>
         <BreadcrumbCurrentPageWithIcon>
           <TriggerIcon className={cn(breadcrumbIconStyle())} />
@@ -24,7 +24,7 @@ export const TriggerOverview = () => {
       </Breadcrumb>
 
       <CreateTriggerButton className="self-start mb-8" />
-      <DataTable columns={triggerColumns} data={[]} />
+      <DataTable columns={triggerColumns} data={data ?? []} />
     </div>
   );
 };

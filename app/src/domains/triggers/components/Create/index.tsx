@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { UseFormReturn, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -42,11 +42,14 @@ export const TriggerCreate = () => {
 
   const { mutateAsync, isLoading } = useCreateTrigger();
 
+  const router = useRouter();
+
   async function onSubmit(data: z.infer<typeof CreateTrigger>) {
     await mutateAsync(data);
     toast({
       title: "Trigger created",
     });
+    router.navigate({ to: "/triggers" });
   }
 
   const pickedTrigger = form.watch("type");

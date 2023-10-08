@@ -1,14 +1,24 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { BaseTrigger } from "../../schemas";
+import { AssignedProfileTrigger, Trigger, triggerTypeMap } from "../../schemas";
 
-export const triggerColumns: ColumnDef<BaseTrigger>[] = [
+export const triggerColumns: ColumnDef<Trigger>[] = [
   {
-    accessorKey: "profile",
-    header: "Profile",
+    header: "Type",
+    accessorFn: (trigger) => triggerTypeMap[trigger.type].short,
   },
   {
-    accessorKey: "type",
-    header: "Type",
+    header: "Profiles",
+    cell: ({ row }) => {
+      const profiles = (row.original as AssignedProfileTrigger).profiles;
+      const getProfileString = () => {
+        if (!profiles) return "";
+        if (profiles === "all") return "All profiles";
+        return profiles.length > 1
+          ? `${profiles.length} profiles`
+          : `${profiles[0]!.name}`;
+      };
+      return <span className=" ">{getProfileString()}</span>;
+    },
   },
   {
     accessorKey: "actions",

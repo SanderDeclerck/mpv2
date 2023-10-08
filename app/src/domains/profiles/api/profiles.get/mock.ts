@@ -22,10 +22,10 @@ export const profiles = [
   "L - automatic multiple fields + fallback",
   "M - weighing standalone + pincode",
   "N - Brussels Inbound",
-];
+].map((_, i) => ({ name: _, id: i }));
 
 registerMock(getProfiles, (_req, res) => {
   setTimeout(() => {
-    return res.json(profiles.map((_, i) => ({ id: i, name: _ })));
+    return res.json(profiles);
   }, 1000);
 });
