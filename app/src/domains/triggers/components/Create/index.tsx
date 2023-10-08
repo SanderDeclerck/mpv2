@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
-import { useForm } from "react-hook-form";
+import { UseFormReturn, useForm } from "react-hook-form";
 import { z } from "zod";
 import {
   Breadcrumb,
@@ -23,8 +23,13 @@ import {
 import { toast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/~button";
 import { cn } from "@/lib/utils";
-import { CreateTrigger } from "../../schemas";
+import {
+  CreateAssignedProfileTrigger,
+  CreateStatusChangeTrigger,
+  CreateTrigger,
+} from "../../schemas";
 import { TriggerIcon } from "../TriggerIcon";
+import { ProfileAssignedTriggerForm } from "./ProfileChangeTriggerForm";
 import { StatusChangeTriggerForm } from "./StatusChangeTriggerForm";
 import { TriggerPicker } from "./TriggerPicker";
 
@@ -85,18 +90,25 @@ export const TriggerCreate = () => {
               );
             }}
           />
-          <AnimatePresence initial={Boolean(pickedTrigger)}>
+          <AnimatePresence initial={false}>
             {pickedTrigger && (
               <motion.div
-                key="modal"
+                key="trigger-form"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="space-y-8"
               >
-                {pickedTrigger === "StatusChange" && (
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  <StatusChangeTriggerForm form={form as any} />
+                {pickedTrigger === "StatusChange" ? (
+                  <StatusChangeTriggerForm
+                    form={form as UseFormReturn<CreateStatusChangeTrigger>}
+                  />
+                ) : pickedTrigger === "AssignedProfile" ? (
+                  <ProfileAssignedTriggerForm
+                    form={form as UseFormReturn<CreateAssignedProfileTrigger>}
+                  />
+                ) : (
+                  <div>Todo implementation for {pickedTrigger}</div>
                 )}
                 <FormField
                   control={form.control}

@@ -29,7 +29,6 @@ export const StatusChangeTriggerForm = (props: {
                 getText={(item) => item}
                 selected={field.value}
                 onValueChange={(selected) => {
-                  console.log("selected", selected);
                   form.setValue("status", selected as typeof field.value);
                 }}
                 selectionPredicate={(item, selected) =>

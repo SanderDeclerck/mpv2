@@ -1,4 +1,5 @@
-import { Express } from "express";
+import { registerMock } from "@/server/registerMock";
+import { getProfiles } from ".";
 
 const profiles = [
   "B - All fields mandatory + dochandling",
@@ -23,10 +24,8 @@ const profiles = [
   "N - Brussels Inbound",
 ];
 
-export const registerProfileRoutes = (app: Express): void => {
-  app.get("/profiles", (_, res) => {
-    setTimeout(() => {
-      return res.json(profiles.map((_, i) => ({ id: i, name: _ })));
-    }, 1000);
-  });
-};
+registerMock(getProfiles, (_req, res) => {
+  setTimeout(() => {
+    return res.json(profiles.map((_, i) => ({ id: i, name: _ })));
+  }, 1000);
+});

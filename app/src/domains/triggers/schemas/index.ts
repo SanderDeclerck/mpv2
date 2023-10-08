@@ -42,7 +42,7 @@ export type StatusChangeTrigger = z.infer<typeof StatusChangeTrigger>;
 
 export const AssignedProfileTrigger = BaseTrigger.extend({
   type: z.literal("AssignedProfile"),
-  profiles: z.array(profileSchema).min(1).or(z.literal("all")),
+  profiles: z.array(profileSchema.shape.id).min(1).or(z.literal("all")),
 });
 export type AssignedProfileTrigger = z.infer<typeof AssignedProfileTrigger>;
 
@@ -67,10 +67,24 @@ export type CreateStatusChangeTrigger = z.infer<
   typeof CreateStatusChangeTrigger
 >;
 
+export const CreateAssignedProfileTrigger = AssignedProfileTrigger.omit(
+  createTriggerOmitKeys,
+);
+export type CreateAssignedProfileTrigger = z.infer<
+  typeof CreateAssignedProfileTrigger
+>;
+
+export const CreateAtCertainTimeTrigger = AtCertainTimeTrigger.omit(
+  createTriggerOmitKeys,
+);
+export type CreateAtCertainTimeTrigger = z.infer<
+  typeof CreateAtCertainTimeTrigger
+>;
+
 export const CreateTrigger = z.discriminatedUnion("type", [
   CreateStatusChangeTrigger,
-  AssignedProfileTrigger.omit(createTriggerOmitKeys),
-  AtCertainTimeTrigger.omit(createTriggerOmitKeys),
+  CreateAssignedProfileTrigger,
+  CreateAtCertainTimeTrigger,
 ]);
 export type CreateTrigger = z.infer<typeof CreateTrigger>;
 

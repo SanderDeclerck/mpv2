@@ -2,7 +2,6 @@ import cors from "cors";
 import { json } from "express";
 import { glob } from "glob";
 import { app } from "./app";
-import { registerProfileRoutes } from "./profiles";
 import { setState } from "./state";
 import { registerVisitorRoutes } from "./visitors";
 
@@ -18,7 +17,6 @@ app.use((_req, _res, next) => {
 app.use(json());
 
 registerVisitorRoutes(app);
-registerProfileRoutes(app);
 
 app.get("/", (_, res) => {
   res.send("Hello World from the mockserver!!!!");

@@ -1,6 +1,6 @@
 import { produce } from "immer";
-import { Check, ChevronsUpDown } from "lucide-react";
-import React from "react";
+import { Check, ChevronsUpDown, Loader2Icon } from "lucide-react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import {
   Command,
   CommandEmpty,
@@ -25,12 +25,13 @@ interface MultipleAndAllPickerProps<T> {
   getText: (item: T) => string;
   getKey: (item: T) => string;
   selected: Selected;
-  onValueChange: (selected: Selected) => void;
+  onValueChange: (selected: NonNullable<Selected>) => void;
   selectionPredicate: (item: T, selected: Selected) => boolean;
   placeholder?: string;
   searchPlaceholder?: string;
   noValueFound?: string;
   allText?: string;
+  isLoading?: boolean;
 }
 
 export const MultipleAndAllPicker = <T,>(
@@ -47,11 +48,30 @@ export const MultipleAndAllPicker = <T,>(
     noValueFound,
     allText,
     getKey,
+    isLoading,
   } = props;
   const [open, setOpen] = React.useState(false);
 
   const allSelected = selected === "all";
   const hasSelection = allSelected || (selected || []).length > 0;
+
+  const [isOverflowing, setIsOverflowing] = React.useState(false);
+  const textRef = useRef<HTMLSpanElement>(null);
+  useLayoutEffect(() => {
+    setIsOverflowing(
+      Boolean(
+        textRef.current &&
+          textRef.current.scrollWidth > textRef.current.offsetWidth,
+      ),
+    );
+  }, [selected]);
+
+  console.log(
+    "scroll",
+    textRef.current,
+    textRef.current?.scrollWidth,
+    textRef.current?.clientWidth,
+  );
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -59,28 +79,49 @@ export const MultipleAndAllPicker = <T,>(
         <FormControl>
           <Button
             variant="outline"
+            disabled={isLoading}
             role="combobox"
             aria-expanded={open}
             className="w-full justify-between"
           >
-            {allSelected
-              ? allText ?? "All"
-              : hasSelection
-              ? data
-                  .filter((_) => selectionPredicate(_, selected))
-                  .map(getText)
-                  .join(", ")
-              : placeholder ?? "Select..."}
-            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            <div className="w-full flex text-left  truncate">
+              <span
+                className={cn(
+                  "truncate absolute",
+                  isOverflowing ? "visible" : "invisible",
+                )}
+              >
+                {selected !== "all" ? selected?.length : ""}
+              </span>
+              <span
+                ref={textRef}
+                className={cn(
+                  "truncate",
+                  isOverflowing ? "invisible" : "visible",
+                )}
+              >
+                {allSelected
+                  ? allText ?? "All"
+                  : hasSelection
+                  ? data
+                      .filter((_) => selectionPredicate(_, selected))
+                      .map(getText)
+                      .join(", ")
+                  : placeholder ?? "Select..."}
+              </span>
+            </div>
+            {isLoading ? (
+              <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            )}
           </Button>
         </FormControl>
       </PopoverTrigger>
-      <PopoverContent className="w-[--radix-popover-trigger-width]  p-0">
-        <Command>
-          <CommandInput placeholder={searchPlaceholder} />
-          <CommandEmpty>
-            {noValueFound ?? `Nothing found for 'TODO'`}
-          </CommandEmpty>
+      <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+        <Command className="max-h-[calc(var(--radix-popover-content-available-height)-20px)]">
+          <CommandInput placeholder={searchPlaceholder ?? "Search..."} />
+          <CommandEmpty>{noValueFound ?? `No results found.`}</CommandEmpty>
           <CommandGroup>
             <CommandItem
               onSelect={() => {
@@ -98,7 +139,7 @@ export const MultipleAndAllPicker = <T,>(
             </CommandItem>
           </CommandGroup>
           <CommandSeparator />
-          <CommandGroup>
+          <CommandGroup className="overflow-y-auto shrink">
             {data.map((item) => {
               const key = getKey(item);
               return (
@@ -116,7 +157,7 @@ export const MultipleAndAllPicker = <T,>(
                       } else {
                         draft.push(key);
                       }
-                    });
+                    }) as NonNullable<Selected>;
 
                     onValueChange(newSelected);
                   }}
