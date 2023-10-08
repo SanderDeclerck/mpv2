@@ -91,7 +91,7 @@ export const Menu = () => (
         </MenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <MenuLink>
+        <MenuLink to="/about">
           <MenuIcon icon={InfoIcon} />
           About
         </MenuLink>

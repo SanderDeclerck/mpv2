@@ -15,6 +15,65 @@ export const TriggerType = z.enum([
 ]);
 export type TriggerType = z.infer<typeof TriggerType>;
 
+export const VisitorStatus = z.enum([
+  "Blocked",
+  "Checked in",
+  "Expected",
+  "Departed",
+  "Waiting approval",
+]);
+export type VisitorStatus = z.infer<typeof VisitorStatus>;
+
+export const BaseTrigger = z.object({
+  id: z.string(),
+  active: z.boolean(),
+  type: TriggerType,
+  actions: z.array(ActionType),
+});
+export type BaseTrigger = z.infer<typeof BaseTrigger>;
+
+export const StatusChangeTrigger = BaseTrigger.merge(
+  z.object({
+    type: z.literal("StatusChange"),
+    status: z.array(VisitorStatus).min(1).or(z.literal("all")),
+  }),
+);
+export type StatusChangeTrigger = z.infer<typeof StatusChangeTrigger>;
+
+export const AssignedProfileTrigger = BaseTrigger.extend({
+  type: z.literal("AssignedProfile"),
+  profiles: z.array(profileSchema).min(1).or(z.literal("all")),
+});
+export type AssignedProfileTrigger = z.infer<typeof AssignedProfileTrigger>;
+
+export const AtCertainTimeTrigger = BaseTrigger.extend({
+  type: z.literal("AtCertainTime"),
+});
+
+export const Trigger = z.discriminatedUnion("type", [
+  StatusChangeTrigger,
+  AssignedProfileTrigger,
+  AtCertainTimeTrigger,
+]);
+export type Trigger = z.infer<typeof Trigger>;
+
+// https://github.com/colinhacks/zod/discussions/1434
+export const createTriggerOmitKeys = { id: true } as const;
+
+export const CreateStatusChangeTrigger = StatusChangeTrigger.omit(
+  createTriggerOmitKeys,
+);
+export type CreateStatusChangeTrigger = z.infer<
+  typeof CreateStatusChangeTrigger
+>;
+
+export const CreateTrigger = z.discriminatedUnion("type", [
+  CreateStatusChangeTrigger,
+  AssignedProfileTrigger.omit(createTriggerOmitKeys),
+  AtCertainTimeTrigger.omit(createTriggerOmitKeys),
+]);
+export type CreateTrigger = z.infer<typeof CreateTrigger>;
+
 export const triggerTypeMap: Record<
   TriggerType,
   { short: string; long: string }
@@ -30,11 +89,10 @@ export const triggerTypeMap: Record<
   AtCertainTime: { short: "At Certain Time", long: "At a certain time of day" },
 } as const;
 
-export const Trigger = z.object({
-  id: z.string(),
-  profile: profileSchema.optional(),
-  active: z.boolean(),
-  type: TriggerType,
-  actions: z.array(ActionType).min(1),
-});
-export type Trigger = z.infer<typeof Trigger>;
+export const visitorStatusMap: VisitorStatus[] = [
+  "Blocked",
+  "Checked in",
+  "Expected",
+  "Departed",
+  "Waiting approval",
+];

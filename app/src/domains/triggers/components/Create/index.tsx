@@ -23,19 +23,20 @@ import {
 import { toast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/~button";
 import { cn } from "@/lib/utils";
-import { CreateTriggerSchema } from "../../api/createTrigger.post";
+import { CreateTrigger } from "../../schemas";
 import { TriggerIcon } from "../TriggerIcon";
+import { StatusChangeTriggerForm } from "./StatusChangeTriggerForm";
 import { TriggerPicker } from "./TriggerPicker";
 
 export const TriggerCreate = () => {
-  const form = useForm<z.infer<typeof CreateTriggerSchema>>({
-    resolver: zodResolver(CreateTriggerSchema),
+  const form = useForm<CreateTrigger>({
+    resolver: zodResolver(CreateTrigger),
     defaultValues: { active: true, actions: [] },
   });
 
   console.log("errors", form.formState.errors);
 
-  function onSubmit(data: z.infer<typeof CreateTriggerSchema>) {
+  function onSubmit(data: z.infer<typeof CreateTrigger>) {
     toast({
       title: "You submitted the following values:",
       description: (
@@ -91,36 +92,39 @@ export const TriggerCreate = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
+                className="space-y-8"
               >
-                <>
-                  <FormField
-                    control={form.control}
-                    name="active"
-                    render={({ field }) => (
-                      <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md ml-4">
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </FormControl>
-                        <div className="space-y-1 leading-none">
-                          <FormLabel>Enable trigger</FormLabel>
-                          <FormDescription>
-                            {field.value
-                              ? "This trigger will be executed when its conditions are met."
-                              : "This trigger is paused."}
-                          </FormDescription>
-                        </div>
-                      </FormItem>
-                    )}
-                  />
-                  <div>
-                    <Button className="mt-8" type="submit">
-                      Create trigger
-                    </Button>
-                  </div>
-                </>
+                {pickedTrigger === "StatusChange" && (
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  <StatusChangeTriggerForm form={form as any} />
+                )}
+                <FormField
+                  control={form.control}
+                  name="active"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel>Enable trigger</FormLabel>
+                        <FormDescription>
+                          {field.value
+                            ? "This trigger will be executed when its conditions are met."
+                            : "This trigger is paused."}
+                        </FormDescription>
+                      </div>
+                    </FormItem>
+                  )}
+                />
+                <div>
+                  <Button className="mt-2" type="submit">
+                    Create trigger
+                  </Button>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>

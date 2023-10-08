@@ -1,7 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { Trigger } from "../../schemas";
+import { BaseTrigger } from "../../schemas";
 
-export const triggerColumns: ColumnDef<Trigger>[] = [
+export const triggerColumns: ColumnDef<BaseTrigger>[] = [
   {
     accessorKey: "profile",
     header: "Profile",

@@ -10,7 +10,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="sticky top-0 z-40 w-full border-b backdrop-blur bg-white/95">
+      <div className="sticky top-0 z-40 w-full border-b backdrop-blur bg-white/90">
         <div className="flex justify-between items-center">
           <div className="pl-10 py-3 font-extrabold text-2xl">
             <span className="bg-clip-text bg-peri-gradient text-transparent">
@@ -51,7 +51,7 @@ function App() {
           <Toaster />
         </main>
       </div>
-      <div className="bg-peri-gradient-transparent h-screen absolute top-0 left-[19.5rem] bottom-0 right-0 -z-10 overflow-hidden pointer-events-none"></div>
+      <div className="bg-peri-gradient-transparent fixed top-0 left-[19.5rem] bottom-0 right-0 -z-10 overflow-hidden pointer-events-none"></div>
     </QueryClientProvider>
   );
 }

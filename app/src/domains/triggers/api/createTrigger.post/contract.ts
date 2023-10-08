@@ -8,6 +8,7 @@ describe("create trigger POST", () => {
     await setState("");
     await postTrigger({
       type: "StatusChange",
+      status: ["Checked in"],
       active: true,
       actions: ["SendEmail"],
     });
