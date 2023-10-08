@@ -18,17 +18,17 @@ import { cn } from "@/lib/utils";
 import { TriggerType, triggerTypeMap } from "../../schemas";
 
 interface TriggerPickerProps {
-  key: TriggerType;
+  selectedValue: TriggerType;
   onValueChange: (triggerType: TriggerType) => void;
 }
 
 const triggerTypes = Object.keys(triggerTypeMap) as TriggerType[];
 
 export const TriggerPicker = React.forwardRef(
-  ({ key, onValueChange }: TriggerPickerProps, _ref) => {
+  ({ selectedValue, onValueChange }: TriggerPickerProps, _ref) => {
     const [open, setOpen] = React.useState(false);
 
-    const hasSelection = key !== undefined;
+    const hasSelection = selectedValue !== undefined;
 
     return (
       <Popover open={open} onOpenChange={setOpen}>
@@ -40,7 +40,9 @@ export const TriggerPicker = React.forwardRef(
               aria-expanded={open}
               className="w-full justify-between"
             >
-              {hasSelection ? triggerTypeMap[key] : "Choose a trigger ..."}
+              {hasSelection
+                ? triggerTypeMap[selectedValue].long
+                : "Choose a trigger..."}
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </FormControl>
@@ -61,10 +63,10 @@ export const TriggerPicker = React.forwardRef(
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      key === trigger ? "opacity-100" : "opacity-0",
+                      selectedValue === trigger ? "opacity-100" : "opacity-0",
                     )}
                   />
-                  {triggerTypeMap[trigger]}
+                  {triggerTypeMap[trigger].long}
                 </CommandItem>
               ))}
             </CommandGroup>

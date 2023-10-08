@@ -15,10 +15,19 @@ export const TriggerType = z.enum([
 ]);
 export type TriggerType = z.infer<typeof TriggerType>;
 
-export const triggerTypeMap: Record<TriggerType, string> = {
-  AssignedProfile: "Assigned Profile",
-  StatusChange: "Status Change",
-  AtCertainTime: "At Certain Time",
+export const triggerTypeMap: Record<
+  TriggerType,
+  { short: string; long: string }
+> = {
+  AssignedProfile: {
+    short: "Assigned Profile",
+    long: "When a profile is assigned to a visitor",
+  },
+  StatusChange: {
+    short: "Status Change",
+    long: "When a visitor's status changes",
+  },
+  AtCertainTime: { short: "At Certain Time", long: "At a certain time of day" },
 } as const;
 
 export const Trigger = z.object({
@@ -26,6 +35,6 @@ export const Trigger = z.object({
   profile: profileSchema.optional(),
   active: z.boolean(),
   type: TriggerType,
-  actions: z.array(ActionType),
+  actions: z.array(ActionType).min(1),
 });
 export type Trigger = z.infer<typeof Trigger>;
