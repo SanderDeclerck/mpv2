@@ -24,7 +24,7 @@ export const ProfileAssignedTriggerForm = (props: {
       render={({ field }) => {
         return (
           <FormItem>
-            <FormLabel>On profile changes to</FormLabel>
+            <FormLabel>Applies to</FormLabel>
             <FormControl>
               <MultipleAndAllPicker
                 data={profiles ?? []}
@@ -37,6 +37,8 @@ export const ProfileAssignedTriggerForm = (props: {
                     : field.value?.map((_) => _.toString())
                 }
                 noValueFound="No profiles found"
+                placeholder="Select profiles..."
+                itemCountText={(count) => `${count} profiles selected`}
                 onValueChange={(selected) => {
                   form.setValue(
                     "profiles",
@@ -47,7 +49,7 @@ export const ProfileAssignedTriggerForm = (props: {
                   selected !== "all" &&
                   Boolean(selected?.includes(item.id.toString()))
                 }
-                allText="Every profile change"
+                allText="Every profile"
               />
             </FormControl>
             <FormMessage />

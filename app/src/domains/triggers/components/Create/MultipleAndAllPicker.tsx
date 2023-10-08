@@ -1,6 +1,6 @@
 import { produce } from "immer";
 import { Check, ChevronsUpDown, Loader2Icon } from "lucide-react";
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import {
   Command,
   CommandEmpty,
@@ -31,7 +31,9 @@ interface MultipleAndAllPickerProps<T> {
   searchPlaceholder?: string;
   noValueFound?: string;
   allText?: string;
+  itemCountText?: (count: number) => string;
   isLoading?: boolean;
+  allDisabled?: boolean;
 }
 
 export const MultipleAndAllPicker = <T,>(
@@ -49,6 +51,8 @@ export const MultipleAndAllPicker = <T,>(
     allText,
     getKey,
     isLoading,
+    itemCountText,
+    allDisabled,
   } = props;
   const [open, setOpen] = React.useState(false);
 
@@ -91,7 +95,11 @@ export const MultipleAndAllPicker = <T,>(
                   isOverflowing ? "visible" : "invisible",
                 )}
               >
-                {selected !== "all" ? selected?.length : ""}
+                {selected !== "all"
+                  ? itemCountText
+                    ? itemCountText(selected?.length ?? 0)
+                    : selected?.length + " selected"
+                  : ""}
               </span>
               <span
                 ref={textRef}
@@ -122,23 +130,27 @@ export const MultipleAndAllPicker = <T,>(
         <Command className="max-h-[calc(var(--radix-popover-content-available-height)-20px)]">
           <CommandInput placeholder={searchPlaceholder ?? "Search..."} />
           <CommandEmpty>{noValueFound ?? `No results found.`}</CommandEmpty>
-          <CommandGroup>
-            <CommandItem
-              onSelect={() => {
-                onValueChange("all");
-                setOpen(false);
-              }}
-            >
-              <Check
-                className={cn(
-                  "mr-2 h-4 w-4",
-                  selected === "all" ? "opacity-100" : "opacity-0",
-                )}
-              />
-              {allText ?? "All"}
-            </CommandItem>
-          </CommandGroup>
-          <CommandSeparator />
+          {allDisabled ? null : (
+            <>
+              <CommandGroup>
+                <CommandItem
+                  onSelect={() => {
+                    onValueChange("all");
+                    setOpen(false);
+                  }}
+                >
+                  <Check
+                    className={cn(
+                      "mr-2 h-4 w-4",
+                      selected === "all" ? "opacity-100" : "opacity-0",
+                    )}
+                  />
+                  {allText ?? "All"}
+                </CommandItem>
+              </CommandGroup>
+              <CommandSeparator />
+            </>
+          )}
           <CommandGroup className="overflow-y-auto shrink">
             {data.map((item) => {
               const key = getKey(item);

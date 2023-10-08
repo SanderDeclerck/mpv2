@@ -34,7 +34,7 @@ export const StatusChangeTriggerForm = (props: {
                 selectionPredicate={(item, selected) =>
                   selected !== "all" && Boolean(selected?.includes(item))
                 }
-                allText="Every status change"
+                allDisabled
               />
             </FormControl>
             <FormMessage />
