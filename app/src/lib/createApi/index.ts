@@ -1,7 +1,10 @@
 import axios from "axios";
 import { z } from "zod";
 
-const apiUrl = (url: string) => "http://localhost:4000" + url; //import.meta.env.VITE_API + url;
+const apiUrl = (url: string) => {
+  const server = process.env.API_URL;
+  return server + url;
+};
 
 const method = {
   get: "get",
