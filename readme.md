@@ -53,3 +53,4 @@ reddit post:
 
 Follow this reasoning everywhere:
 ![image](https://github.com/ThomasStock/mpv2/assets/8448483/5a4a07b3-6daf-45be-9054-4486e012da74)
+
