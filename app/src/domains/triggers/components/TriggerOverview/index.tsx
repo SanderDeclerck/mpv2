@@ -3,15 +3,17 @@ import {
   BreadcrumbCurrentPageWithIcon,
   breadcrumbIconStyle,
 } from "@/components/Breadcrumb";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useTriggers } from "../../api/triggers.get";
+import { AssignedProfileTrigger, triggerTypeMap } from "../../schemas";
 import { TriggerIcon } from "../TriggerIcon";
 import { CreateTriggerButton } from "./CreateTriggerButton";
 import { triggerColumns } from "./columns";
 import { DataTable } from "./data-table";
 
 export const TriggerOverview = () => {
-  const { data } = useTriggers();
+  const { data, isLoading } = useTriggers();
 
   console.log(data);
   return (
@@ -23,8 +25,72 @@ export const TriggerOverview = () => {
         </BreadcrumbCurrentPageWithIcon>
       </Breadcrumb>
 
-      <CreateTriggerButton className="self-start mb-8" />
-      <DataTable columns={triggerColumns} data={data ?? []} />
+      <Card className="mt-8 max-w-3xl">
+        <CardHeader>
+          <CardTitle className="flex justify-between">
+            Overview
+            <CreateTriggerButton />
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {isLoading ? (
+            <div className="h-48 text-center">
+              <div className="italic text-muted-foreground/70 text-base mt-20">
+                Loading...
+              </div>
+            </div>
+          ) : data?.length ? (
+            <ul className=" divide-y divide-gray-200 ">
+              {data.map((trigger) => {
+                return (
+                  <li
+                    className={cn("py-4", trigger.active ? "" : "opacity-50")}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900 truncate ">
+                          {triggerTypeMap[trigger.type].long}
+                        </p>
+                        <p className="text-sm text-gray-500  ">
+                          {trigger.type === "AssignedProfile" ? (
+                            (trigger as AssignedProfileTrigger).profiles ===
+                            "all" ? (
+                              "All profiles"
+                            ) : (
+                              <ul>
+                                {(
+                                  (trigger as AssignedProfileTrigger)
+                                    .profiles as { id: number; name: string }[]
+                                ).map((profile) => (
+                                  <li className="">{profile.name}</li>
+                                ))}
+                              </ul>
+                            )
+                          ) : trigger.type === "StatusChange" ? (
+                            <div>status</div>
+                          ) : (
+                            <div>todo</div>
+                          )}
+                        </p>
+                      </div>
+                      <div className="inline-flex items-center text-sm font-semibold text-gray-900">
+                        {trigger.active ? "Active" : "Inactive"}
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <div className="h-48 text-center">
+              <div className="italic text-muted-foreground/70 text-base mt-20">
+                No triggers yet
+              </div>
+              <CreateTriggerButton variant="outline" className="mt-6" />
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 };

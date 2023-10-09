@@ -1,9 +1,12 @@
 import cors from "cors";
+import dotenv from "dotenv";
 import { json } from "express";
 import { glob } from "glob";
 import { app } from "./app";
 import { setState } from "./state";
 import { registerVisitorRoutes } from "./visitors";
+
+dotenv.config();
 
 const port = 4000;
 

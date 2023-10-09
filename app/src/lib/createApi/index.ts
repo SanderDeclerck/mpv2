@@ -1,7 +1,6 @@
 import axios from "axios";
 import { z } from "zod";
 
-// Todo: use import.meta.env.VITE_API in server?
 const apiUrl = (url: string) => "http://localhost:4000" + url; //import.meta.env.VITE_API + url;
 
 const method = {
