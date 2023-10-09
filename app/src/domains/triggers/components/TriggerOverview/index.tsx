@@ -6,7 +6,12 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useTriggers } from "../../api/triggers.get";
-import { AssignedProfileTrigger, triggerTypeMap } from "../../schemas";
+import {
+  AssignedProfileTrigger,
+  StatusChangeTrigger,
+  triggerTypeMap,
+  visitorStatusMap,
+} from "../../schemas";
 import { TriggerIcon } from "../TriggerIcon";
 import { CreateTriggerButton } from "./CreateTriggerButton";
 import { triggerColumns } from "./columns";
@@ -51,7 +56,7 @@ export const TriggerOverview = () => {
                         <p className="text-sm font-medium text-gray-900 truncate ">
                           {triggerTypeMap[trigger.type].long}
                         </p>
-                        <p className="text-sm text-gray-500  ">
+                        <div className="text-sm text-gray-500  ">
                           {trigger.type === "AssignedProfile" ? (
                             (trigger as AssignedProfileTrigger).profiles ===
                             "all" ? (
@@ -61,17 +66,29 @@ export const TriggerOverview = () => {
                                 {(
                                   (trigger as AssignedProfileTrigger)
                                     .profiles as { id: number; name: string }[]
-                                ).map((profile) => (
-                                  <li className="">{profile.name}</li>
+                                ).map((profile, i) => (
+                                  <li key={i}>{profile.name}</li>
                                 ))}
                               </ul>
                             )
                           ) : trigger.type === "StatusChange" ? (
-                            <div>status</div>
+                            (trigger as StatusChangeTrigger).status ===
+                            "all" ? (
+                              "All status changes"
+                            ) : (
+                              <ul>
+                                {(
+                                  (trigger as StatusChangeTrigger)
+                                    .status as string[]
+                                ).map((status, i) => (
+                                  <li key={i}>{status}</li>
+                                ))}
+                              </ul>
+                            )
                           ) : (
                             <div>todo</div>
                           )}
-                        </p>
+                        </div>
                       </div>
                       <div className="inline-flex items-center text-sm font-semibold text-gray-900">
                         {trigger.active ? "Active" : "Inactive"}
