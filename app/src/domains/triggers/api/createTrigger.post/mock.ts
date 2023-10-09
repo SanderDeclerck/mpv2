@@ -46,6 +46,6 @@ registerMock(postTrigger, async (req, res) => {
   triggerMocks.push(trigger);
 
   setTimeout(() => {
-    res.json(trigger);
+    res.json(triggerMocks);
   }, 2000);
 });

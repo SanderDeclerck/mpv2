@@ -1,6 +1,6 @@
 import { RootRoute } from "@tanstack/react-router";
-import App from ".";
+import { AppPage } from "./AppPage";
 
 export const appRoute = new RootRoute({
-  component: App,
+  component: AppPage,
 });

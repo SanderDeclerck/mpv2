@@ -6,4 +6,4 @@ import { Trigger } from "../../schemas";
 export const getTriggers = api.get("/triggers").returns(z.array(Trigger));
 
 export const useTriggers = () =>
-  useQuery({ queryKey: ["triggers"], queryFn: getTriggers });
+  useQuery({ queryKey: ["triggers"], queryFn: getTriggers, staleTime: 120000 });
